@@ -38,7 +38,7 @@ void NodeInt::outputData()
 
 Tree* NodeInt::getNode(int index)
 {
-	if (index <= objects.size() && objects.size() > 0)
+	if (index < objects.size() && objects.size() > 0)
 		return objects[index].get();
 	else return nullptr;
 }
