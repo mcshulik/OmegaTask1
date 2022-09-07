@@ -18,9 +18,6 @@
     <ClCompile Include="OmegaTask1.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="tree.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="nodeChar.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>

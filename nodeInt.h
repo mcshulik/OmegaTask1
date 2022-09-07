@@ -1,5 +1,6 @@
 #pragma once
 #include "tree.h"
+#include "vector"
 
 class NodeInt : public Tree
 {
@@ -10,7 +11,8 @@ public:
 	void addDouble(double &&data) override;
 	void outputAll(int level) override;
 	void outputData() override;
-	Tree* getNode(int index) override;
+	Tree* getNode(unsigned int index) override;
+	void writeToFile(std::ofstream& out, int level) override;
 private:
 	int data;
 	std::vector<std::unique_ptr<Tree>> objects;

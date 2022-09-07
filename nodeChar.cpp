@@ -1,6 +1,6 @@
-#include "nodechar.h"
-#include "nodedouble.h"
-#include "nodeint.h"
+#include "nodeChar.h"
+#include "nodeDouble.h"
+#include "nodeInt.h"
 
 NodeChar::NodeChar(char m_data[10])
 {
@@ -42,9 +42,21 @@ void NodeChar::outputData()
 	std::cout << data;
 }
 
-Tree* NodeChar::getNode(int index)
+Tree* NodeChar::getNode(unsigned int index)
 {
 	if (index < objects.size() && objects.size() > 0)
 		return objects[index].get();
 	else return nullptr;
+}
+
+void NodeChar::writeToFile(std::ofstream& out, int level)
+{
+	for (unsigned int i = 0; i < objects.size(); i++)
+	{
+		objects[i].get()->writeToFile(out, level + 1);
+	}
+	out << "c";
+	for (int i = 0; i < level; i++)
+		out << " ";
+	out << data << std::endl;
 }

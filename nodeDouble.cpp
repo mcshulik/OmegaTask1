@@ -36,9 +36,21 @@ void NodeDouble::outputData()
 	std::cout << data;
 }
 
-Tree* NodeDouble::getNode(int index)
+Tree* NodeDouble::getNode(unsigned int index)
 {
 	if (index < objects.size() && objects.size() > 0)
 		return objects[index].get();
 	else return nullptr;
+}
+
+void NodeDouble::writeToFile(std::ofstream& out, int level)
+{
+	for (unsigned int i = 0; i < objects.size(); i++)
+	{
+		objects[i].get()->writeToFile(out, level + 1);
+	}
+	out << "d";
+	for (int i = 0; i < level; i++)
+		out << " ";
+	out << data << std::endl;
 }

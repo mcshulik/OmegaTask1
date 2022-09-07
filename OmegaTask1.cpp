@@ -1,14 +1,15 @@
 ﻿#include <iostream>
+#include <fstream>
+#include <windows.h>
 #include "nodeInt.h"
 #include "nodeDouble.h"
 #include "nodeChar.h"
-#include <windows.h>
 
 int main()
 {
     std::unique_ptr<Tree> root;
     int i;
-    srand(time(nullptr));
+    srand((unsigned int)time(nullptr));
 
     std::cout << "1 - random" << std::endl;
     std::cin >> i;
@@ -117,32 +118,40 @@ int main()
                     std::cin >> i;
                     if (i == 1)
                     {
+                        index = 0;
                         getBottom++;
                         if (getBottom == 2)
                         {
                             getBottom--;
                             nodeTemp = nodeTemp2;
                         }
-                        if (root.get() && root.get()->getNode(index))
+                        if (nodeTemp && nodeTemp->getNode(index))
                         {
                             nodeTemp2 = nodeTemp->getNode(index);
                             std::cout << "Node data:";
                             nodeTemp2->outputData();
                         }
                         std::cout << std::endl;
-                        index++;
                     }
                     else if (i == 2)
                     {
                         index++;
                         if (nodeTemp && nodeTemp->getNode(index))
-                            nodeTemp = nodeTemp->getNode(index);
+                        {
+                            nodeTemp2 = nodeTemp->getNode(index);
+                            std::cout << "Node data:";
+                            nodeTemp2->outputData();
+                            std::cout << std::endl;
+                        }
                         else index = 0;
                     }
-                    else break;
+                    else
+                        break;
                 }
                 std::cout << "Choose what to enter" << std::endl << "1 - integer" << std::endl << "2 - string" << std::endl << "3 - fractional" << std::endl;
                 std::cin >> i;
+                if (!i)
+                    break;
                 switch (i)
                 {
                 case 1:
@@ -161,6 +170,9 @@ int main()
                     char data[10];
                     std::cout << "Enter string" << std::endl;
                     std::cin >> data;
+                    while (data[0] == ' ')
+                        for (int i2 = 1; i2 < 10; i++)
+                            data[i2 - 1] = data[i2];
                     if (!root)
                         root = std::unique_ptr<NodeChar>(new NodeChar(data));
                     else
@@ -196,4 +208,8 @@ int main()
             }
         }
     }
+    std::ofstream out("task1.txt");
+    if (out.is_open())
+        root.get()->writeToFile(out, 0);
+    out.close();
 }
