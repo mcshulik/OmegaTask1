@@ -4,13 +4,11 @@
 
 void NodeDouble::outputAll(int level)
 {
-	for (unsigned int i = 0; i < objects.size(); i++)
-	{
-		objects[i].get()->outputAll(level + 1);
-	}
 	for (int i = 0; i < level; i++)
 		std::cout << " ";
 	std::cout << data << std::endl;
+	for (unsigned int i = 0; i < objects.size(); i++)
+		objects[i].get()->outputAll(level + 1);
 }
 
 void NodeDouble::addInt(int &&data)
@@ -45,12 +43,10 @@ Tree* NodeDouble::getNode(unsigned int index)
 
 void NodeDouble::writeToFile(std::ofstream& out, int level)
 {
+	out << 'd';
+	out << level << ' ' << data << std::endl;
 	for (unsigned int i = 0; i < objects.size(); i++)
 	{
 		objects[i].get()->writeToFile(out, level + 1);
 	}
-	out << "d";
-	for (int i = 0; i < level; i++)
-		out << " ";
-	out << data << std::endl;
 }

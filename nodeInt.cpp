@@ -4,13 +4,11 @@
 
 void NodeInt::outputAll(int level)
 {
-	for (unsigned int i = 0; i < objects.size(); i++)
-	{
-		objects[i].get()->outputAll(level + 1);
-	}
 	for (int i = 0; i < level; i++)
 		std::cout << " ";
 	std::cout << data << std::endl;
+	for (unsigned int i = 0; i < objects.size(); i++)
+		objects[i].get()->outputAll(level + 1);
 }
 
 void NodeInt::addInt(int &&data)
@@ -45,12 +43,10 @@ Tree* NodeInt::getNode(unsigned int index)
 
 void NodeInt::writeToFile(std::ofstream& out, int level)
 {
+	out << 'i';
+	out << level << ' ' << data << std::endl;
 	for (unsigned int i = 0; i < objects.size(); i++)
 	{
 		objects[i].get()->writeToFile(out, level + 1);
 	}
-	out << "i";
-	for (int i = 0; i < level; i++)
-		out << " ";
-	out << data << std::endl;
 }

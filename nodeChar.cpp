@@ -10,13 +10,11 @@ NodeChar::NodeChar(char m_data[10])
 
 void NodeChar::outputAll(int level)
 {
-	for (unsigned int i = 0; i < objects.size(); i++)
-	{
-		objects[i].get()->outputAll(level + 1);
-	}
 	for (int i = 0; i < level; i++)
 		std::cout << " ";
 	std::cout << data << std::endl;
+	for (unsigned int i = 0; i < objects.size(); i++)
+		objects[i].get()->outputAll(level + 1);
 }
 
 void NodeChar::addInt(int &&data)
@@ -51,12 +49,10 @@ Tree* NodeChar::getNode(unsigned int index)
 
 void NodeChar::writeToFile(std::ofstream& out, int level)
 {
+	out << 'c';
+	out << level << ' ' << data << std::endl;
 	for (unsigned int i = 0; i < objects.size(); i++)
 	{
 		objects[i].get()->writeToFile(out, level + 1);
 	}
-	out << "c";
-	for (int i = 0; i < level; i++)
-		out << " ";
-	out << data << std::endl;
 }

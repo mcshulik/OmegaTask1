@@ -13,4 +13,5 @@ public:
 	virtual void outputData() = 0;
 	virtual Tree* getNode(unsigned int index) = 0;
 	virtual void writeToFile(std::ofstream &out, int level) = 0;
+	std::unique_ptr<Tree> ReadFromFile(std::ifstream &in);
 };

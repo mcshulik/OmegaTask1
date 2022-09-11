@@ -143,6 +143,7 @@
     <ClCompile Include="nodeDouble.cpp" />
     <ClCompile Include="nodeInt.cpp" />
     <ClCompile Include="OmegaTask1.cpp" />
+    <ClCompile Include="tree.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="nodeChar.h" />
